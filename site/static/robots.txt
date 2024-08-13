@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /success/
+Disallow: /confirmed/
+
+Sitemap: https://www.jason.energy/sitemap.txt
