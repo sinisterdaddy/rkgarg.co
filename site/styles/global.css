@@ -608,15 +608,15 @@ main.home {
 
 .hero-first-line {
   display: block;
-  font-size: min(25.6vw, 199px);
-  line-height: 0.8;
+  font-size: min(30vw, 165px); /* Adjust this size to match Krishna */
+  line-height: 1;
 }
 
 .hero-box {
   background: var(--color-hero-text);
   color: var(--color-hero-bg);
   display: block;
-  font-size: min(13.2vw, 102.5px);
+  font-size: min(30vw, 110px); /* Match this size with Radha */
   line-height: 1;
   margin: 0;
   padding: 0 0.5rem;
