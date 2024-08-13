@@ -1,7 +1,7 @@
 module.exports = [
   {
     label: 'Twitter',
-    link: 'https://twitter.com/jlengstorf',
+    link: 'https://x.com/im_rkgarg  ',
     icon: `
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -19,7 +19,7 @@ module.exports = [
   },
   {
     label: 'GitHub',
-    link: 'https://github.com/jlengstorf',
+    link: 'https://github.com/sinisterdaddy',
     icon: `
       <svg
         xmlns="http://www.w3.org/2000/svg"

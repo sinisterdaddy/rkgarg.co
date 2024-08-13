@@ -1,17 +1,17 @@
 module.exports = [
   {
     id: 'bio',
-    label: 'About Jason',
+    label: 'About Rk',
     icon: 'camera',
   },
   {
     id: 'teaching',
-    label: 'Teaching',
+    label: 'Projects',
     icon: 'terminal',
   },
   {
     id: 'newsletter',
-    label: 'Newsletter',
+    label: 'contact',
     icon: 'newsletter',
   },
   // {
