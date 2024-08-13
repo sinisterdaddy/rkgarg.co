@@ -93,7 +93,7 @@ const taglines = [
     size: '8.44vw',
     'size-lg': '65.5px',
     text: `
-      <span class="love">love</span>s melted cheese
+      is Familiar with Root Framework
     `,
   },
   {
@@ -112,7 +112,7 @@ const taglines = [
     size: '5.02vw',
     'size-lg': '39px',
     text: `
-      would <span class="love">love</span> a sandwich, thanks
+      would <span class="love">love</span> a JOB, thanks
     `,
     top: '-0.1em',
   },
@@ -122,7 +122,7 @@ const taglines = [
     size: '8.39vw',
     'size-lg': '65.25px',
     text: `
-      <span class="love">love</span>s pajama pants
+      <span class="love">love</span>s to Build Things
     `,
   },
 ];
