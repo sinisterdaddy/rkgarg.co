@@ -67,7 +67,7 @@ const taglines = [
     size: '8.46vw',
     'size-lg': '66px',
     text: `
-      has a lot of ideas
+      has lots of ideas
     `,
   },
   {
@@ -76,7 +76,7 @@ const taglines = [
     size: '9.4vw',
     'size-lg': '73px',
     text: `
-      believes in us <span class="love"></span>
+      is a Full Stack Developer <span class="love"></span>
     `,
     top: '0',
   },
@@ -84,7 +84,7 @@ const taglines = [
     size: '9.57vw',
     'size-lg': '74.5px',
     text: `
-      is an okay cook
+      is a ML and DL Enthusiast
     `,
   },
   {
