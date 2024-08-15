@@ -935,9 +935,22 @@ main.home {
 
 /* PHOTOS */
 .photos {
-  margin: 3rem auto 0;
-  max-width: 400px;
+  display: flex;
+  justify-content: center; /* Centers the image horizontally */
+  align-items: center; /* Centers the image vertically if the container has a height */
+  padding: 20px;
+  background-color: #2d2d2d; /* Dark background to contrast with the image */
+  border-radius: 10px; /* Rounds the corners of the container */
 }
+
+.photos img {
+  max-width: 100%; /* Ensures the image scales down for smaller screens */
+  height: auto; /* Maintains the aspect ratio of the image */
+  border-radius: 50%; /* Makes the image circular */
+  border: 5px solid #00aced; /* Adds a blue border around the image */
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5); /* Adds a shadow for depth */
+}
+
 
 @media (min-width: 900px) {
   .photos {
