@@ -1,10 +1,43 @@
 <section id="bio" class="block bio-block">
   <div class="bio-container">
-    <div class="bio-text">
+    <div>
+      <p>
+      Hello! I'm a student at VIT with a strong interest in web development, machine learning, deep learning, and emerging technologies. I'm passionate about tackling new challenges and expanding my skills. If you're interested in networking, collaborating, or sharing ideas, I'd love to connect.</p>
+      <p><strong>Feel free to reach out!</strong>
+      </p>
+      
+          <div class="bio-length-options">
+            {% for option in options %}
+            <div class="bio-option">
+              <input
+                class="bio-input"
+                type="radio"
+                id="length-{{ option }}"
+                name="biolength"
+                value="{{ option }}"
+                data-sound-hover="pop"
+                data-sound-focus="click"
+                data-sound-click="click"
+              />
+              <label for="length-{{ option }}" class="bio-label">
+                <span class="bio-label-text">{{ option }}</span>
+              </label>
+            </div>
+            {% endfor %}
+          </div>
+
+    <template id="bios">
+      <p>
+        <strong>RK</strong> is trying his very best.
+      </p>
+      
+    </template>
+      
       <p class="bio">
-        <strong>Hello! I'm a student at VIT with a strong interest in web development, machine learning, deep learning, and emerging technologies. I'm passionate about tackling new challenges and expanding my skills. If you're interested in networking, collaborating, or sharing ideas, I'd love to connect. Feel free to reach out!</strong>
+        {{ defaultBio | safe }}
       </p>
 
+      
       <div class="bio-social">
         <h2 class="bio-connect">Connect With RK:</h2>
         <ul class="bio-profiles">

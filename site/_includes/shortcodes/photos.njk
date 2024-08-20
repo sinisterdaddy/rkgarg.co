@@ -1,3 +1,19 @@
 <div class="photos">
-<img src="https://github.com/user-attachments/assets/f6b0c3a3-c7f7-4a91-9f5e-0f8e9e9a0c18" alt="A description of your photo" />
+  <figure class="gallery-image">
+    <img
+      src="https://github.com/user-attachments/assets/f6b0c3a3-c7f7-4a91-9f5e-0f8e9e9a0c18"
+      srcSet="https://github.com/user-attachments/assets/f6b0c3a3-c7f7-4a91-9f5e-0f8e9e9a0c18 1x,
+              "https://github.com/user-attachments/assets/f6b0c3a3-c7f7-4a91-9f5e-0f8e9e9a0c18 2x"
+      alt="{{ photos[0].alt }}"
+    />
+    
+  </figure>
+  <div class="gallery-options">
+
+    <ul class="gallery-thumbnails">
+    {% for photo in photos %}
+
+    {% endfor %}
+    </ul>
+  </div>
 </div>
