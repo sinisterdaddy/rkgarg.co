@@ -1717,3 +1717,20 @@ footer nav {
   white-space: nowrap;
   width: 1px;
 }
+
+form input,
+form textarea {
+  width: 100%; /* Ensure both input and textarea fields take up the full width */
+  max-width: 500px; /* Set a consistent maximum width for both input and textarea */
+  padding: 10px; /* Add padding for a better user experience */
+  margin-bottom: 20px; /* Add spacing between the fields */
+  font-size: 16px; /* Ensure consistent font size */
+  border: 2px solid #fff; /* White border to match the design */
+  border-radius: 5px; /* Optional: Add border-radius for smoother edges */
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+form textarea {
+  resize: none; /* Disable resizing for consistent look */
+  height: 150px; /* Set a consistent height for the message box */
+}
