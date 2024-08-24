@@ -359,7 +359,6 @@ header a {
 
 .exploding-nav::after {
   content: '';
-  background-image: url('https://res.cloudinary.com/jlengstorf/image/upload/q_auto,f_auto/jason.energy/dome-top.png');
   background-position: top right;
   background-repeat: no-repeat;
   background-size: contain;
@@ -591,50 +590,72 @@ main.home {
 .hero-block {
   --color-background: var(--color-hero-bg);
 }
-
 /* HERO */
 .hero {
   color: var(--color-hero-text);
-  height: 390px;
+  height: auto;
   margin: 0 auto;
-  max-height: 54vw;
-  max-width: 700px;
+  max-width: 90vw;
   position: relative;
   text-align: center;
   text-transform: uppercase;
-  width: 90vw;
+  width: 100%;
   z-index: 1;
+  padding: 1rem; /* Add padding to ensure it doesn’t touch screen edges */
+  box-sizing: border-box; /* Ensure padding doesn't affect the width */
 }
 
-.hero-first-line {
+.hero-first-line,
+.hero-box {
   display: block;
-  font-size: min(30vw, 165px); /* Adjust this size to match Krishna */
-  line-height: 1;
+  font-size: 10vw; /* Use vw units for better responsiveness */
+  line-height: 1.0;
+  margin: 0;
+  padding: 0;
 }
 
 .hero-box {
   background: var(--color-hero-text);
   color: var(--color-hero-bg);
-  display: block;
-  font-size: min(30vw, 110px); /* Match this size with Radha */
-  line-height: 1;
-  margin: 0;
   padding: 0 0.5rem;
-  transition: 200ms background linear;
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 10vw; /* Match the font size to hero-first-line */
 }
 
 .hero-tagline {
-  --top: -7px;
-  --rotation: 0deg;
-  --scale: 1.1;
-  --size: 8.48vw;
-  --size-lg: 66px;
-
   display: block;
-  font-size: min(var(--size), var(--size-lg));
-  line-height: 0.85;
-  margin: 0.125rem -0.125rem 0;
+  font-size: 5vw; /* Make this responsive as well */
+  line-height: 1;
+  margin: 0.5rem 0 0;
 }
+
+/* MEDIA QUERIES FOR RESPONSIVENESS */
+
+/* Larger screens */
+@media (min-width: 768px) {
+  .hero-first-line,
+  .hero-box {
+    font-size: min(8vw, 80px); /* Adjust max size for larger screens */
+  }
+
+  .hero-tagline {
+    font-size: min(4vw, 40px); /* Adjust tagline for larger screens */
+  }
+}
+
+/* Very small screens */
+@media (max-width: 375px) {
+  .hero-first-line,
+  .hero-box {
+    font-size: 12vw; /* Increase size slightly for small screens */
+  }
+
+  .hero-tagline {
+    font-size: 6vw; /* Ensure tagline is readable on small screens */
+  }
+}
+
 
 .love {
   background-color: transparent;
@@ -1034,20 +1055,6 @@ main.home {
   border-color: var(--color-blue-border);
 }
 
-.platforms {
-  display: flex;
-  flex-direction: column;
-  gap: 2.25rem;
-  justify-content: center;
-  list-style: none;
-  margin: 2.25rem 0 0;
-  padding: 0;
-}
-
-.platform {
-  margin: 0 auto;
-  max-width: 320px;
-}
 
 @media (min-width: 1000px) {
   .platforms {
@@ -1059,24 +1066,57 @@ main.home {
   }
 }
 
+
+
+.platforms {
+  display: flex;
+  justify-content: space-around;
+  align-items: stretch; /* Ensure all cards stretch to the same height */
+  flex-wrap: wrap;
+  gap: 2rem; /* Space between the cards */
+  margin:100px;
+}
+
+.platform {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 320px; /* Ensure consistent width */
+}
+
 .platform-link {
-  display: block;
-  margin: 0 auto;
-  width: 200px;
+  position: relative; /* Keep this relative for absolute positioning of the image */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
 }
 
 .platform-link img {
   display: block;
   filter: drop-shadow(0 0.125rem 0.25rem var(--color-gray-900-alpha));
-  max-width: 100%;
+  max-width: 45%;
 }
-
 .platform-card {
+  position: relative;
+  padding-top: 8rem; /* Increase padding-top to accommodate the logo */
+  padding: 1.5rem;
   background: var(--color-background);
   border-radius: 0.25rem;
-  margin: -5rem 0 0;
-  padding: 5.25rem 1.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 100%; /* Ensures all cards are of equal height */
 }
+
+
+.platform-description {
+  flex-grow: 1;
+}
+
+
+
 .platform-name {
   margin: 0;
   padding: 0;
