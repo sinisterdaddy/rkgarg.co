@@ -30,7 +30,7 @@
 
   const formData = new FormData(event.target);
 
-  fetch('http://localhost:3000/send-mail', {
+  fetch('https://one1tybackend.onrender.com/send-mail', {
     method: 'POST',
     body: new URLSearchParams(formData), // Converts the form data to a URL-encoded string
     headers: {
