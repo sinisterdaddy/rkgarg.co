@@ -19,11 +19,23 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addCollection('posts', (collectionApi) => {
     // I was already using tags, so this is a workaround
-    return collectionApi
+    const posts = collectionApi
       .getAll()
       .filter((item) => item.data.type === 'post')
       .sort((a, b) => b.date - a.date);
+
+    console.log('Collected Posts:', posts.length);
+    return posts;
   });
+
+  return {
+    dir: {
+      input: "site",
+      output: "dist" // Ensure this matches your Vercel settings
+    }
+  };
+};
+
 
   eleventyConfig.addPlugin(require('eleventy-plugin-toc'), {
     tags: ['h2'],
@@ -219,3 +231,5 @@ module.exports = function (eleventyConfig) {
     markdownTemplateEngine: 'njk',
   };
 };
+
+
