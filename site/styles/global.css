@@ -1047,26 +1047,11 @@ main.home {
 
 .gallery-credit {
   margin: 0;
-}
-
-/* LEARNING */
+}/* LEARNING */
 .learning-block {
   background: var(--color-blue-bg);
   border-color: var(--color-blue-border);
 }
-
-
-@media (min-width: 1000px) {
-  .platforms {
-    flex-direction: row;
-  }
-
-  .platform {
-    margin: 0;
-  }
-}
-
-
 
 .platforms {
   display: flex;
@@ -1074,7 +1059,7 @@ main.home {
   align-items: stretch; /* Ensure all cards stretch to the same height */
   flex-wrap: wrap;
   gap: 2rem; /* Space between the cards */
-  margin:100px;
+  margin: 100px;
 }
 
 .platform {
@@ -1098,6 +1083,7 @@ main.home {
   filter: drop-shadow(0 0.125rem 0.25rem var(--color-gray-900-alpha));
   max-width: 45%;
 }
+
 .platform-card {
   position: relative;
   padding-top: 8rem; /* Increase padding-top to accommodate the logo */
@@ -1110,12 +1096,9 @@ main.home {
   height: 100%; /* Ensures all cards are of equal height */
 }
 
-
 .platform-description {
   flex-grow: 1;
 }
-
-
 
 .platform-name {
   margin: 0;
@@ -1139,9 +1122,36 @@ main.home {
   text-transform: uppercase;
 }
 
-.subscribe-block {
-  border-bottom: 0;
+/* MEDIA QUERIES */
+@media (max-width: 600px) {
+  .platforms {
+    flex-direction: column;
+    margin: 20px; /* Reduce margin for small screens */
+  }
+
+  .platform {
+    max-width: 100%; /* Make the card full-width */
+    margin-bottom: 1rem; /* Add some space between cards */
+  }
+
+  .platform-link img {
+    max-width: 80%; /* Increase image size on small screens */
+  }
+
+  .platform-card {
+    padding-top: 4rem; /* Reduce padding on small screens */
+    padding: 1rem;
+  }
+
+  .platform-description {
+    font-size: 0.75rem; /* Smaller font size for small screens */
+  }
+
+  .platform-link-text {
+    font-size: 0.75rem; /* Slightly larger text for better readability */
+  }
 }
+
 
 /* POST */
 .post {
