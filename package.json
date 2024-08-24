@@ -5,7 +5,7 @@
   "version": "0.2.0",
   "license": "MIT",
   "scripts": {
-    "build": "npx eleventy",
+    "build": "eleventy",
     "dev": "eleventy --serve"
   },
   "dependencies": {

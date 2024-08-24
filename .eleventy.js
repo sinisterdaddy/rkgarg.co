@@ -9,7 +9,6 @@ const cloudinary = require('@jlengstorf/cloudinary-11ty-helpers')({
   cloud_name: 'dftz278yf',
   api_key: '117289386797695',
   api_secret: 'T889V6vXSRuf90W_XJmeF4jew3w',
-  folder: 'jason.energy',
   image_width: 680,
 });
 module.exports = function (eleventyConfig) {
