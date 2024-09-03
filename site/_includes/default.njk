@@ -197,13 +197,13 @@
     <div id="chatbot-container">
     <div id="chatbox" class="collapsed">
         <div id="chatbox-header">
-            <span id="chatbox-title">RK-Chatbot</span>
+            <span id="chatbox-title">Ask RK</span>
             <button id="collapse-button">−</button>
         </div>
         <div id="chatbox-messages">
             <!-- Chat messages will appear here -->
         </div>
-        <input type="text" id="user-input" placeholder="Ask me anything about my resume..." />
+        <input type="text" id="user-input" placeholder="Ask me anything about rk" />
         <button id="send-button">Send</button>
     </div>
     <button id="chatbot-button" class="floating-button">
@@ -221,14 +221,23 @@
         chatbox.style.display = 'none';
     });
 
-    document.getElementById('send-button').addEventListener('click', function () {
+    document.getElementById('send-button').addEventListener('click', sendMessage);
+
+    document.getElementById('user-input').addEventListener('keypress', function (event) {
+        if (event.key === 'Enter') {
+            event.preventDefault(); // Prevents the default action of Enter key (form submission or new line)
+            sendMessage();
+        }
+    });
+
+    function sendMessage() {
         const userInput = document.getElementById('user-input').value;
         if (userInput.trim()) {
             addMessage('You', userInput, 'user-message');
             getGPT4Response(userInput);
             document.getElementById('user-input').value = '';
         }
-    });
+    }
 
     function addMessage(sender, text, messageType) {
         const messageContainer = document.createElement('div');
@@ -261,13 +270,14 @@
 
             const data = await response.json();
             const gptResponse = data.choices[0].message.content.trim();
-            addMessage('RK-Chatbot', gptResponse, 'bot-message');
+            addMessage('RK', gptResponse, 'bot-message');
         } catch (error) {
             console.error('Error fetching GPT-4 response:', error);
-            addMessage('RK-Chatbot', 'Sorry, something went wrong. Please try again.', 'bot-message');
+            addMessage('RKt', 'Sorry, something went wrong. Please try again.', 'bot-message');
         }
     }
 </script>
+
 
   </body>
 </html>
