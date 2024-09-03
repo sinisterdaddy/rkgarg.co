@@ -194,5 +194,80 @@
 
     {% block scripts %}
     {% endblock %}
+    <div id="chatbot-container">
+    <div id="chatbox" class="collapsed">
+        <div id="chatbox-header">
+            <span id="chatbox-title">RK-Chatbot</span>
+            <button id="collapse-button">−</button>
+        </div>
+        <div id="chatbox-messages">
+            <!-- Chat messages will appear here -->
+        </div>
+        <input type="text" id="user-input" placeholder="Ask me anything about my resume..." />
+        <button id="send-button">Send</button>
+    </div>
+    <button id="chatbot-button" class="floating-button">
+        <img src="your-button-icon.png" alt="Chatbot" />
+    </button>
+</div>
+<script>
+    document.getElementById('chatbot-button').addEventListener('click', function () {
+        const chatbox = document.getElementById('chatbox');
+        chatbox.style.display = chatbox.style.display === 'none' ? 'flex' : 'none';
+    });
+
+    document.getElementById('collapse-button').addEventListener('click', function () {
+        const chatbox = document.getElementById('chatbox');
+        chatbox.style.display = 'none';
+    });
+
+    document.getElementById('send-button').addEventListener('click', function () {
+        const userInput = document.getElementById('user-input').value;
+        if (userInput.trim()) {
+            addMessage('You', userInput, 'user-message');
+            getGPT4Response(userInput);
+            document.getElementById('user-input').value = '';
+        }
+    });
+
+    function addMessage(sender, text, messageType) {
+        const messageContainer = document.createElement('div');
+        messageContainer.className = `chat-message ${messageType}`;
+        messageContainer.innerHTML = `<strong>${sender}:</strong> ${text}`;
+        document.getElementById('chatbox-messages').appendChild(messageContainer);
+        document.getElementById('chatbox-messages').scrollTop = document.getElementById('chatbox-messages').scrollHeight;
+    }
+
+    async function getGPT4Response(userInput) {
+        try {
+            const response = await fetch('https://api.openai.com/v1/chat/completions', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer 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`
+                },
+                body: JSON.stringify({
+                    model: "gpt-4",
+                    messages: [
+                        { role: "system", content: "You are a helpful assistant that knows everything about Radha Krishna's resume." },
+                        { role: "user", content: userInput }
+                    ],
+                    max_tokens: 150,
+                    n: 1,
+                    stop: null,
+                    temperature: 0.5,
+                })
+            });
+
+            const data = await response.json();
+            const gptResponse = data.choices[0].message.content.trim();
+            addMessage('RK-Chatbot', gptResponse, 'bot-message');
+        } catch (error) {
+            console.error('Error fetching GPT-4 response:', error);
+            addMessage('RK-Chatbot', 'Sorry, something went wrong. Please try again.', 'bot-message');
+        }
+    }
+</script>
+
   </body>
 </html>
