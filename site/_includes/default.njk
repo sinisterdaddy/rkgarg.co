@@ -211,21 +211,30 @@
     </button>
 </div>
 <script>
-    document.getElementById('chatbot-button').addEventListener('click', function () {
-        const chatbox = document.getElementById('chatbox');
-        chatbox.style.display = chatbox.style.display === 'none' ? 'flex' : 'none';
+    const chatbotButton = document.getElementById('chatbot-button');
+    const chatbox = document.getElementById('chatbox');
+    const collapseButton = document.getElementById('collapse-button');
+
+    chatbotButton.addEventListener('click', function () {
+        if (chatbox.style.display === 'none' || !chatbox.style.display) {
+            chatbox.style.display = 'flex';
+            chatbotButton.style.display = 'none'; // Hide the floating button
+        } else {
+            chatbox.style.display = 'none';
+            chatbotButton.style.display = 'flex'; // Show the floating button
+        }
     });
 
-    document.getElementById('collapse-button').addEventListener('click', function () {
-        const chatbox = document.getElementById('chatbox');
+    collapseButton.addEventListener('click', function () {
         chatbox.style.display = 'none';
+        chatbotButton.style.display = 'flex'; // Show the floating button when chatbox is collapsed
     });
 
     document.getElementById('send-button').addEventListener('click', sendMessage);
 
     document.getElementById('user-input').addEventListener('keypress', function (event) {
         if (event.key === 'Enter') {
-            event.preventDefault(); // Prevents the default action of Enter key (form submission or new line)
+            event.preventDefault();
             sendMessage();
         }
     });
@@ -258,7 +267,67 @@
                 body: JSON.stringify({
                     model: "gpt-4",
                     messages: [
-                        { role: "system", content: "You are a helpful assistant that knows everything about Radha Krishna's resume." },
+                        {
+                            role: "system",
+                            content: `
+                            You are an assistant that knows everything about Radha Krishna Garg's resume. 
+                            Respond to queries only based on the following information:
+
+                            **Name:** Radha Krishna Garg
+                            **Location:** Jaipur, India
+                            **Email:** krishna.garg010604@gmail.com
+                            **Phone:** +91-9358084318
+                            **LinkedIn:** linkedin.com/in/radhakrishnagarg/
+                            **GitHub:** github.com/rkgarg
+                            **Portfolio:** rkgarg.co
+
+                            **Education:**
+                            - **Vellore Institute of Technology, Amravati** (Aug 2021 - May 2025) 
+                              Bachelor of Technology in Computer Science Engineering, QPA: 3.68/4
+                              Relevant Coursework: Applied Statistics, Computer Architecture, Computer Networks, Database Management Systems, 
+                              Deep Learning, Discrete Mathematics, Graph Theory, Applied Linear Algebra, Object-Oriented Programming, 
+                              Operating Systems, Data Structures and Algorithms.
+                            - **JVP International School** (May 2019 - May 2021) 
+                              Senior Secondary Education, CBSE Percent: 94.6%
+                            - **Bharatiya Vidya Bhavan’s Vidyashram** (May 2011 - May 2019)
+                              Secondary Education, CBSE Percent: 96%
+
+                            **Work Experience:**
+                            - **VECC (Variable Energy Cyclotron Centre): Research Intern**
+                              - Collaborated with CERN and FAIR Germany on the CBM experiment, improving data processing speed by 40%.
+                            - **KaleidEO Space: Machine Learning Research Intern**
+                              - Developed and deployed 5 predictive models, enhancing accuracy by 25%.
+                            - **Persist Ventures: Full Stack and AI Developer**
+                              - Led the Neighbourhood project, increasing user engagement by 30%.
+
+                            **Technical Skills:**
+                            - **Programming Languages:** Python, Java, C++, C, Matlab, HTML, CSS, JavaScript, PHP
+                            - **Software & Tools:** Jupyter, Visual Studio Code, Docker, PyCharm, Anaconda Navigator, Matlab, Obsidian
+                            - **Data Science:** NumPy, Pandas, SciPy, Scikit-Learn, Matplotlib, Seaborn, Plotly, Statistical Modeling, Regression, 
+                              Classification, Clustering, Time Series Analysis, Data Analysis
+                            - **Machine Learning:** Deep Learning (PyTorch, Keras), Computer Vision (OpenCV), Neural Networks (CNN, RNN, LSTM), 
+                              Natural Language Processing (NLP) (NLTK, SpaCy), Reinforcement Learning, Transfer Learning, Model Deployment 
+                              (TensorFlow Serving, FastAPI)
+                            - **Web Development:** HTML, CSS, JavaScript, React.js
+                            - **Game Development:** Lua, Love2D, Unity
+
+                            **Projects:**
+                            - **EcoMotion:** Real-time EV route planning using Google Maps API and TensorFlow, 40% faster route calculation.
+                            - **Gaia’s Touch:** Community platform connecting individuals with local NGOs, increased volunteer participation by 40%.
+                            - **Dexi - AI Chatbot:** AI chatbot integrated with home automation, 25% increase in user satisfaction.
+                            - **Academia:** Gen AI-based educational project, 35% increase in student retention.
+                            - **SheSafe:** Flutter app enhancing women's safety, 50% reduction in incidents.
+
+                            **Honors and Awards:**
+                            - Smart India Hackathon Winner 2023 (Team Leader)
+                            - Special Appreciation in GOOGLE Solution Challenge
+                            - ISRO Start Trainee
+                            - Winner of NationWide HackAP Hackathon
+                            - IMO - Gold Medalist & NSO - Bronze Medalist
+
+                            If the question is not related to any of this information, politely say that you can only provide details based on the resume.
+                            `
+                        },
                         { role: "user", content: userInput }
                     ],
                     max_tokens: 150,
@@ -270,13 +339,14 @@
 
             const data = await response.json();
             const gptResponse = data.choices[0].message.content.trim();
-            addMessage('RK', gptResponse, 'bot-message');
+            addMessage('RK-Chatbot', gptResponse, 'bot-message');
         } catch (error) {
             console.error('Error fetching GPT-4 response:', error);
-            addMessage('RKt', 'Sorry, something went wrong. Please try again.', 'bot-message');
+            addMessage('RK-Chatbot', 'Sorry, something went wrong. Please try again.', 'bot-message');
         }
     }
 </script>
+
 
 
   </body>
