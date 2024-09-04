@@ -271,105 +271,122 @@
         document.getElementById('chatbox-messages').scrollTop = document.getElementById('chatbox-messages').scrollHeight;
     }
 
-    async function getGPT4Response(userInput) {
-        try {
-            const response = await fetch('https://api.openai.com/v1/chat/completions', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer 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`
-                },
-                body: JSON.stringify({
-                    model: "gpt-4",
-                    messages: [
-                        {
-                            role: "system",
-                            content: `
-                            You are an assistant that knows everything about Radha Krishna Garg's resume. 
-                            Respond to queries only based on the following information:
+async function getGPT4Response(userInput) {
+    try {
+        // Show the new typing indicator
+        const typingIndicator = document.createElement('div');
+        typingIndicator.className = 'typing-indicator';
+        typingIndicator.id = 'typing-indicator';
+        typingIndicator.innerHTML = `
+            <span></span>
+            <span></span>
+            <span></span>
+        `;
+        document.getElementById('chatbox-messages').appendChild(typingIndicator);
+        document.getElementById('chatbox-messages').scrollTop = document.getElementById('chatbox-messages').scrollHeight;
 
-                            **Name:** Radha Krishna Garg
-                            **Location:** Jaipur, India
-                            **Email:** krishna.garg010604@gmail.com
-                            **Phone:** +91-9358084318
-                            **LinkedIn:** linkedin.com/in/radhakrishnagarg/
-                            **GitHub:** github.com/rkgarg
-                            **Portfolio:** rkgarg.co
+        const response = await fetch('https://api.openai.com/v1/chat/completions', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer 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`
+            },
+            body: JSON.stringify({
+                model: "gpt-4",
+                messages: [
+                    {
+                        role: "system",
+                        content: `
+                        You are an assistant that knows everything about Radha Krishna Garg's resume. 
+                        Respond to queries only based on the following information:
 
-                            **Education:**
-                            - **Vellore Institute of Technology, Amravati** (Aug 2021 - May 2025) 
-                              Bachelor of Technology in Computer Science Engineering, QPA: 3.68/4
-                              Relevant Coursework: Applied Statistics, Computer Architecture, Computer Networks, Database Management Systems, 
-                              Deep Learning, Discrete Mathematics, Graph Theory, Applied Linear Algebra, Object-Oriented Programming, 
-                              Operating Systems, Data Structures and Algorithms.
-                            - **JVP International School** (May 2019 - May 2021) 
-                              Senior Secondary Education, CBSE Percent: 94.6%
-                            - **Bharatiya Vidya Bhavan’s Vidyashram** (May 2011 - May 2019)
-                              Secondary Education, CBSE Percent: 96%
+                        **Name:** Radha Krishna Garg
+                        **Location:** Jaipur, India
+                        **Email:** krishna.garg010604@gmail.com
+                        **Phone:** +91-9358084318
+                        **LinkedIn:** linkedin.com/in/radhakrishnagarg/
+                        **GitHub:** github.com/rkgarg
+                        **Portfolio:** rkgarg.co
 
-                            **Work Experience:**
-                            - **VECC (Variable Energy Cyclotron Centre): Research Intern**
-                              - Collaborated with CERN and FAIR Germany on the CBM experiment, improving data processing speed by 40%.
-                            - **KaleidEO Space: Machine Learning Research Intern**
-                              - Developed and deployed 5 predictive models, enhancing accuracy by 25%.
-                            - **Persist Ventures: Full Stack and AI Developer**
-                              - Led the Neighbourhood project, increasing user engagement by 30%.
+                        **Education:**
+                        - **Vellore Institute of Technology, Amravati** (Aug 2021 - May 2025) 
+                          Bachelor of Technology in Computer Science Engineering, QPA: 3.68/4
+                          Relevant Coursework: Applied Statistics, Computer Architecture, Computer Networks, Database Management Systems, 
+                          Deep Learning, Discrete Mathematics, Graph Theory, Applied Linear Algebra, Object-Oriented Programming, 
+                          Operating Systems, Data Structures and Algorithms.
+                        - **JVP International School** (May 2019 - May 2021) 
+                          Senior Secondary Education, CBSE Percent: 94.6%
+                        - **Bharatiya Vidya Bhavan’s Vidyashram** (May 2011 - May 2019)
+                          Secondary Education, CBSE Percent: 96%
 
-                            **Technical Skills:**
-                            - **Programming Languages:** Python, Java, C++, C, Matlab, HTML, CSS, JavaScript, PHP
-                            - **Software & Tools:** Jupyter, Visual Studio Code, Docker, PyCharm, Anaconda Navigator, Matlab, Obsidian
-                            - **Data Science:** NumPy, Pandas, SciPy, Scikit-Learn, Matplotlib, Seaborn, Plotly, Statistical Modeling, Regression, 
-                              Classification, Clustering, Time Series Analysis, Data Analysis
-                            - **Machine Learning:** Deep Learning (PyTorch, Keras), Computer Vision (OpenCV), Neural Networks (CNN, RNN, LSTM), 
-                              Natural Language Processing (NLP) (NLTK, SpaCy), Reinforcement Learning, Transfer Learning, Model Deployment 
-                              (TensorFlow Serving, FastAPI)
-                            - **Web Development:** HTML, CSS, JavaScript, React.js
-                            - **Game Development:** Lua, Love2D, Unity
+                        **Work Experience:**
+                        - **VECC (Variable Energy Cyclotron Centre): Research Intern**
+                          - Collaborated with CERN and FAIR Germany on the CBM experiment, improving data processing speed by 40%.
+                        - **KaleidEO Space: Machine Learning Research Intern**
+                          - Developed and deployed 5 predictive models, enhancing accuracy by 25%.
+                        - **Persist Ventures: Full Stack and AI Developer**
+                          - Led the Neighbourhood project, increasing user engagement by 30%.
 
-                            **Projects:**
-                            - **EcoMotion:** Real-time EV route planning using Google Maps API and TensorFlow, 40% faster route calculation.
-                            - **Gaia’s Touch:** Community platform connecting individuals with local NGOs, increased volunteer participation by 40%.
-                            - **Dexi - AI Chatbot:** AI chatbot integrated with home automation, 25% increase in user satisfaction.
-                            - **Academia:** Gen AI-based educational project, 35% increase in student retention.
-                            - **SheSafe:** Flutter app enhancing women's safety, 50% reduction in incidents.
+                        **Technical Skills:**
+                        - **Programming Languages:** Python, Java, C++, C, Matlab, HTML, CSS, JavaScript, PHP
+                        - **Software & Tools:** Jupyter, Visual Studio Code, Docker, PyCharm, Anaconda Navigator, Matlab, Obsidian
+                        - **Data Science:** NumPy, Pandas, SciPy, Scikit-Learn, Matplotlib, Seaborn, Plotly, Statistical Modeling, Regression, 
+                          Classification, Clustering, Time Series Analysis, Data Analysis
+                        - **Machine Learning:** Deep Learning (PyTorch, Keras), Computer Vision (OpenCV), Neural Networks (CNN, RNN, LSTM), 
+                          Natural Language Processing (NLP) (NLTK, SpaCy), Reinforcement Learning, Transfer Learning, Model Deployment 
+                          (TensorFlow Serving, FastAPI)
+                        - **Web Development:** HTML, CSS, JavaScript, React.js
+                        - **Game Development:** Lua, Love2D, Unity
 
-                            **Honors and Awards:**
-                            - Smart India Hackathon Winner 2023 (Team Leader)
-                            - Special Appreciation in GOOGLE Solution Challenge
-                            - ISRO Start Trainee
-                            - Winner of NationWide HackAP Hackathon
-                            - IMO - Gold Medalist & NSO - Bronze Medalist
+                        **Projects:**
+                        - **EcoMotion:** Real-time EV route planning using Google Maps API and TensorFlow, 40% faster route calculation.
+                        - **Gaia’s Touch:** Community platform connecting individuals with local NGOs, increased volunteer participation by 40%.
+                        - **Dexi - AI Chatbot:** AI chatbot integrated with home automation, 25% increase in user satisfaction.
+                        - **Academia:** Gen AI-based educational project, 35% increase in student retention.
+                        - **SheSafe:** Flutter app enhancing women's safety, 50% reduction in incidents.
 
-                            If the question is not related to any of this information, politely say that you can only provide details based on the resume.
-                            `
-                        },
-                        { role: "user", content: userInput }
-                    ],
-                    max_tokens: 300,  // Adjust this to prevent truncation
-                    n: 1,
-                    stop: null,
-                    temperature: 0.5,
-                })
-            });
+                        **Honors and Awards:**
+                        - Smart India Hackathon Winner 2023 (Team Leader)
+                        - Special Appreciation in GOOGLE Solution Challenge
+                        - ISRO Start Trainee
+                        - Winner of NationWide HackAP Hackathon
+                        - IMO - Gold Medalist & NSO - Bronze Medalist
 
-            const data = await response.json();
-            const gptResponse = data.choices[0].message.content.trim();
-            displayInChunks(gptResponse, 250); // Split long responses into chunks
-        } catch (error) {
-            console.error('Error fetching GPT-4 response:', error);
-            addMessage('RK-Chatbot', 'Sorry, something went wrong. Please try again.', 'bot-message');
-        }
-    }
-
-    function displayInChunks(text, chunkSize) {
-        const chunks = text.match(new RegExp('.{1,' + chunkSize + '}(\\s|$)', 'g'));
-
-        chunks.forEach((chunk, index) => {
-            setTimeout(() => {
-                addMessage('RK-Chatbot', chunk.trim(), 'bot-message');
-            }, index * 500);  // Delay between chunks for better readability
+                        If the question is not related to any of this information, politely say that you can only provide details based on the resume.
+                        `
+                    },
+                    { role: "user", content: userInput }
+                ],
+                max_tokens: 300,  // Adjust this to prevent truncation
+                n: 1,
+                stop: null,
+                temperature: 0.5,
+            })
         });
+
+        const data = await response.json();
+        const gptResponse = data.choices[0].message.content.trim();
+
+        // Remove the typing indicator
+        document.getElementById('typing-indicator').remove();
+
+        displayInChunks(gptResponse, 250); // Split long responses into chunks
+    } catch (error) {
+        console.error('Error fetching GPT-4 response:', error);
+        addMessage('RK-Chatbot', 'Sorry, something went wrong. Please try again.', 'bot-message');
     }
+}
+
+function displayInChunks(text, chunkSize) {
+    const chunks = text.match(new RegExp('.{1,' + chunkSize + '}(\\s|$)', 'g'));
+
+    chunks.forEach((chunk, index) => {
+        setTimeout(() => {
+            addMessage('RK-Chatbot', chunk.trim(), 'bot-message');
+        }, index * 500);  // Delay between chunks for better readability
+    });
+}
+
 </script>
 
 
