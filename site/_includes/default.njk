@@ -270,6 +270,8 @@
         document.getElementById('chatbox-messages').appendChild(messageContainer);
         document.getElementById('chatbox-messages').scrollTop = document.getElementById('chatbox-messages').scrollHeight;
     }
+load_dotenv()
+openai.api_key = os.getenv('OPENAI_API_KEY')
 
 async function getGPT4Response(userInput) {
     try {
@@ -289,7 +291,7 @@ async function getGPT4Response(userInput) {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': "Bearer YOUROPENAIKEY"
+                'Authorization': "YOUROPENAIKEY"
             },
             body: JSON.stringify({
                 model: "gpt-4",
